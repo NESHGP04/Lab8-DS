@@ -1,0 +1,25 @@
+# docker compose ps
+NAME            IMAGE              COMMAND                  SERVICE    CREATED          STATUS          PORTS
+lab8-lab        lab8-ds-lab        "jupyter lab --ip=0.…"   lab        31 minutes ago   Up 31 minutes   127.0.0.1:8888->8888/tcp
+lab8-metabase   lab8-ds-metabase   "/__cacert_entrypoin…"   metabase   31 minutes ago   Up 31 minutes   127.0.0.1:3000->3000/tcp
+
+# JupyterLab: GET /api
+HTTP 200
+
+# Metabase: GET /api/health
+{"status":"ok"}
+HTTP 200
+
+# Herramientas en lab8-lab
+Python 3.11.14
+duckdb                    1.5.5
+jupyterlab                4.6.4
+matplotlib                3.11.2
+pandas                    3.0.6
+pyarrow                   25.0.1
+requests                  2.34.2
+
+# Metabase: plugins y Java
+duckdb.metabase-driver.jar
+sample-database.sqlite
+openjdk version "21.0.12.1" 2026-08-18 LTS

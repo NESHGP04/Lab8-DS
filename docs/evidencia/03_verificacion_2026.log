@@ -1,0 +1,25 @@
+
+=== YELLOW 2026 ===
+  OK  yellow 2026-01   3,724,889 filas
+  OK  yellow 2026-02   3,399,866 filas
+  OK  yellow 2026-03   3,952,451 filas
+  OK  yellow 2026-04   3,831,240 filas
+  OK  yellow 2026-05   4,090,836 filas
+  OK  yellow 2026-06   3,837,248 filas
+  OK  yellow 2026-07   3,530,109 filas
+  OK  yellow 2026-08   3,336,716 filas
+  -> yellow 2026: 8 meses publicados por la TLC
+
+=== GREEN 2026 ===
+  OK  green 2026-01      40,272 filas
+  OK  green 2026-02      37,373 filas
+  OK  green 2026-03      44,208 filas
+  OK  green 2026-04      44,238 filas
+  OK  green 2026-05      44,921 filas
+  OK  green 2026-06      44,163 filas
+  OK  green 2026-07      41,252 filas
+  OK  green 2026-08      40,687 filas
+  -> green 2026: 8 meses publicados por la TLC
+
+============================================================
+Datos completos en data/raw/
