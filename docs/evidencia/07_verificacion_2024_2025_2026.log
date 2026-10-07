@@ -1,0 +1,85 @@
+
+=== YELLOW 2024 ===
+  OK  yellow 2024-01   2,964,624 filas
+  OK  yellow 2024-02   3,007,526 filas
+  OK  yellow 2024-03   3,582,628 filas
+  OK  yellow 2024-04   3,514,289 filas
+  OK  yellow 2024-05   3,723,833 filas
+  OK  yellow 2024-06   3,539,193 filas
+  OK  yellow 2024-07   3,076,903 filas
+  OK  yellow 2024-08   2,979,183 filas
+  OK  yellow 2024-09   3,633,030 filas
+  OK  yellow 2024-10   3,833,771 filas
+  OK  yellow 2024-11   3,646,369 filas
+  OK  yellow 2024-12   3,668,371 filas
+  -> yellow 2024: 12 meses publicados por la TLC
+
+=== GREEN 2024 ===
+  OK  green 2024-01      56,551 filas
+  OK  green 2024-02      53,577 filas
+  OK  green 2024-03      57,457 filas
+  OK  green 2024-04      56,471 filas
+  OK  green 2024-05      61,003 filas
+  OK  green 2024-06      54,748 filas
+  OK  green 2024-07      51,837 filas
+  OK  green 2024-08      51,771 filas
+  OK  green 2024-09      54,440 filas
+  OK  green 2024-10      56,147 filas
+  OK  green 2024-11      52,222 filas
+  OK  green 2024-12      53,994 filas
+  -> green 2024: 12 meses publicados por la TLC
+
+=== YELLOW 2025 ===
+  OK  yellow 2025-01   3,475,226 filas
+  OK  yellow 2025-02   3,577,543 filas
+  OK  yellow 2025-03   4,145,257 filas
+  OK  yellow 2025-04   3,970,553 filas
+  OK  yellow 2025-05   4,591,845 filas
+  OK  yellow 2025-06   4,322,960 filas
+  OK  yellow 2025-07   3,898,963 filas
+  OK  yellow 2025-08   3,574,091 filas
+  OK  yellow 2025-09   4,251,015 filas
+  OK  yellow 2025-10   4,428,699 filas
+  OK  yellow 2025-11   4,181,444 filas
+  OK  yellow 2025-12   4,305,006 filas
+  -> yellow 2025: 12 meses publicados por la TLC
+
+=== GREEN 2025 ===
+  OK  green 2025-01      48,326 filas
+  OK  green 2025-02      46,621 filas
+  OK  green 2025-03      51,539 filas
+  OK  green 2025-04      52,132 filas
+  OK  green 2025-05      55,399 filas
+  OK  green 2025-06      49,390 filas
+  OK  green 2025-07      48,205 filas
+  OK  green 2025-08      46,306 filas
+  OK  green 2025-09      48,893 filas
+  OK  green 2025-10      49,416 filas
+  OK  green 2025-11      46,912 filas
+  OK  green 2025-12      48,236 filas
+  -> green 2025: 12 meses publicados por la TLC
+
+=== YELLOW 2026 ===
+  OK  yellow 2026-01   3,724,889 filas
+  OK  yellow 2026-02   3,399,866 filas
+  OK  yellow 2026-03   3,952,451 filas
+  OK  yellow 2026-04   3,831,240 filas
+  OK  yellow 2026-05   4,090,836 filas
+  OK  yellow 2026-06   3,837,248 filas
+  OK  yellow 2026-07   3,530,109 filas
+  OK  yellow 2026-08   3,336,716 filas
+  -> yellow 2026: 8 meses publicados por la TLC
+
+=== GREEN 2026 ===
+  OK  green 2026-01      40,272 filas
+  OK  green 2026-02      37,373 filas
+  OK  green 2026-03      44,208 filas
+  OK  green 2026-04      44,238 filas
+  OK  green 2026-05      44,921 filas
+  OK  green 2026-06      44,163 filas
+  OK  green 2026-07      41,252 filas
+  OK  green 2026-08      40,687 filas
+  -> green 2026: 8 meses publicados por la TLC
+
+============================================================
+Datos completos en data/raw/

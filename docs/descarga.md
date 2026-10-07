@@ -61,3 +61,16 @@ Resultado con 2024–2026: sin problemas. Inventario obtenido desde los metadato
 - La descarga es **idempotente** e **incremental**: se puede ejecutar cuantas veces se quiera.
 - El script no asume meses: pregunta al servidor qué existe, por lo que corre igual conforme la TLC publica.
 - Datos fuera de git y receta versionada.
+
+## Evidencia (salida real de las ejecuciones)
+Registros completos en [`docs/evidencia/`](evidencia/):
+
+| Archivo | Contenido |
+|---|---|
+| [01_descarga_2026.log](evidencia/01_descarga_2026.log) | Ej. 2: primera descarga de 2026 (16 descargados) |
+| [02_descarga_2026_repetida.log](evidencia/02_descarga_2026_repetida.log) | Ej. 2.4: repetida, 0 descargados / 16 existentes |
+| [03_verificacion_2026.log](evidencia/03_verificacion_2026.log) | Ej. 2.5 y 2.7: verificación de 2026 |
+| [04_descarga_2024_y_2026.log](evidencia/04_descarga_2024_y_2026.log) | Ej. 5: se agrega 2024, 2026 se conserva |
+| [05_descarga_2024_2025_2026.log](evidencia/05_descarga_2024_2025_2026.log) | Ej. 8.1: se agrega 2025 |
+| [06_descarga_repetida_2024_2025_2026.log](evidencia/06_descarga_repetida_2024_2025_2026.log) | Ej. 8.2: repetida, 0 descargados / 64 existentes |
+| [07_verificacion_2024_2025_2026.log](evidencia/07_verificacion_2024_2025_2026.log) | Verificación final del conjunto completo |

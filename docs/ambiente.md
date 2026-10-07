@@ -25,6 +25,8 @@ docker compose ps
 | `import duckdb` dentro de `lab8-lab` y consulta a `/workspace/data/raw/*/*/*.parquet` | funciona (DuckDB 1.5.5) |
 | Plugin de Metabase | `/home/metabase/plugins/duckdb.metabase-driver.jar` presente |
 
+Salida real de estas comprobaciones: [evidencia/00_ambiente_servicios.txt](evidencia/00_ambiente_servicios.txt).
+
 ## 1.4 Herramientas disponibles
 Contenedor `lab8-lab` (imagen `python:3.11.14-slim`, `requirements.txt`):
 Python 3.11.14 · duckdb 1.5.5 · jupyterlab 4.6.4 · pandas 3.0.6 · pyarrow 25.0.1 · matplotlib 3.11.2 · requests 2.34.2 · curl.
