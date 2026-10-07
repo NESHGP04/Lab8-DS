@@ -6,7 +6,7 @@
 
 ## 9.2 Ventajas y limitaciones de Parquet directo
 
-Al leer desde el origen se evita duplicar todos los datos en una tabla. Parquet almacena columnas y metadatos por grupos de filas, lo que permite a DuckDB leer columnas necesarias y en algunos filtros descartar grupos. Un glob admite archivos nuevos al reejecutar consultas sin modificar SQL si mantienen la ruta y un esquema compatible. La lectura repetida y el descubrimiento del esquema de muchos archivos pueden costar tiempo e I/O. Cambios incompatibles de tipo, archivos dañados o meses ausentes requieren validación explícita. Un glob no prueba completitud. Los resultados del conteo del footer y `count(*)` deben compararse antes de reportarlos.
+Al leer desde el origen se evita duplicar todos los datos en una tabla. Parquet almacena columnas y metadatos por grupos de filas, lo que permite a DuckDB leer columnas necesarias y en algunos filtros descartar grupos. Un glob admite archivos nuevos al reejecutar consultas sin modificar SQL si mantienen la ruta y un esquema compatible. La lectura repetida y el descubrimiento del esquema de muchos archivos pueden costar tiempo e I/O. Cambios incompatibles de tipo, archivos dañados o meses ausentes requieren validación explícita. Un glob no prueba completitud. En la ejecución adjunta, las seis agregaciones de `count(*)` coinciden con los footers; esto valida los archivos presentes, pero no prueba que se descargaran todos los publicados.
 
 ## 9.4 Frente a cargar todo con Pandas
 
@@ -14,7 +14,7 @@ Las agregaciones se ejecutan dentro del motor sin materializar todas las filas c
 
 ## 9.8 Qué revela un conjunto grande
 
-A escala de muchos archivos y años aparecen diferencias de esquema, meses desiguales, registros fechados fuera del año nominal, colas largas y el costo de volver a consultar o inspeccionar footers. Una muestra pequeña puede omitir casos raros y dar una impresión engañosa de las proporciones. Los resultados por servicio y año y sus denominadores permiten detectar si un hallazgo se concentra en una cohorte. Comprobar estas afirmaciones en `docs/consultas_exploracion.md` y `docs/hallazgos_eda.md` una vez ejecutados los notebooks.
+A escala de muchos archivos y años aparecen diferencias de esquema, meses desiguales, registros fechados fuera del año nominal, colas largas y el costo de volver a consultar o inspeccionar footers. Una muestra pequeña puede omitir casos raros y dar una impresión engañosa de las proporciones. Los resultados por servicio y año y sus denominadores permiten detectar si un hallazgo se concentra en una cohorte. En esta ejecución, `count(*)` confirmó los 121.184.384 registros informados por los footers de 64 archivos. La validación mostró fechas tan tempranas como 2001 dentro de archivos nominalmente de 2026, lo cual exige filtrar por año efectivo de inicio antes de comparar actividad mensual.
 
 ## Alcance
 
