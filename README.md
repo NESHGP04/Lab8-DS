@@ -119,20 +119,63 @@ generar los resultados principales.
 
 ## Como levantar el ambiente
 
-<!-- TODO (Ejercicio 1.5) -->
+Requisitos: Docker (con Docker Compose) y Git. Ver [docs/ambiente.md](docs/ambiente.md) para el detalle y la verificacion.
+
+```bash
+git clone https://github.com/<su-usuario>/<su-fork>.git
+cd <su-fork>
+docker compose up -d --build     # la primera vez tarda varios minutos (~3 GB de imagenes)
+docker compose ps                # lab8-lab y lab8-metabase deben estar "Up"
+```
+
+| Servicio | URL | Verificacion |
+|---|---|---|
+| JupyterLab (sin token) | <http://localhost:8888> | `curl -s -o /dev/null -w "%{http_code}" http://localhost:8888/api` -> `200` |
+| Metabase | <http://localhost:3000> | `curl -s http://localhost:3000/api/health` -> `{"status":"ok"}` (tarda ~1 min en arrancar) |
+
+Para apagar: `docker compose down`.
 
 ## Como descargar los datos
 
-<!-- TODO (Ejercicios 2.6, 5.1 y 8.1) -->
+Los datos **no** estan en el repositorio; se obtienen con `scripts/download_data.py` (detalle de los
+cambios y de la verificacion en [docs/descarga.md](docs/descarga.md)). Se puede ejecutar dentro del
+contenedor (no requiere nada en su maquina) o en local con `pip install requests duckdb`:
+
+```bash
+# dentro del contenedor (recomendado)
+docker exec -it lab8-lab python scripts/download_data.py --years 2024 2025 2026
+
+# opciones
+python scripts/download_data.py --years 2026                # solo 2026 (conjunto inicial, Ej. 2)
+python scripts/download_data.py --years 2024 2026           # agrega 2024 (Ej. 5)
+python scripts/download_data.py --years 2024 2025 2026      # conjunto completo (Ej. 8)
+python scripts/download_data.py --taxi yellow --years 2025  # un solo tipo
+python scripts/download_data.py --years 2025 --dry-run      # muestra el plan sin descargar
+```
+
+- Se guardan en `data/raw/<yellow|green>/<anio>/*.parquet` y `data/raw/zonas/taxi_zone_lookup.csv`.
+- Es **idempotente**: no vuelve a descargar archivos completos (compara tamano local vs. servidor) y se puede
+  ejecutar de nuevo cuando la TLC publique nuevos meses.
+- El conjunto completo 2024-2026 son 64 archivos, ~121 millones de filas y ~2.0 GB.
+- Verificar completitud e integridad:
+
+```bash
+docker exec -it lab8-lab python scripts/verify_data.py --years 2024 2025 2026
+```
 
 ## Como ejecutar el analisis
 
-<!-- TODO -->
+> Pendiente: lo completan las Personas B y C (ver [docs/DIVISION_TAREAS.md](docs/DIVISION_TAREAS.md)).
+
+Abrir <http://localhost:8888> y ejecutar los notebooks de `notebooks/` en orden
+(`01_exploracion`, `02_eda`, `03_benchmark`, `04_indicadores`). Las consultas SQL estan en `sql/` y su
+documentacion en `docs/`. Todas leen los datos con el patron `/workspace/data/raw/*/*/*.parquet`.
 
 ## Como reproducir los benchmarks
 
-<!-- TODO (Ejercicio 6) -->
+> Pendiente (Persona C, Ejercicio 6): `scripts/build_duckdb.py` y `scripts/benchmark.py`.
 
 ## Como generar los resultados principales
 
-<!-- TODO -->
+> Pendiente (Persona C, Ejercicios 7 y 8): tablero en Metabase (<http://localhost:3000>) y evidencia en `dashboard/`.
+> Nota: Metabase debe abrir `data/processed/taxis.duckdb` en modo de solo lectura (`read_only`).
