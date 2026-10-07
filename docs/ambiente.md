@@ -56,3 +56,4 @@ el mismo entorno con dos comandos, sin "en mi máquina funciona". Además: (1) l
 auditar y repetir, (2) se evita contaminar el Python del sistema, (3) el equipo se incorpora sin
 instalar nada a mano, y (4) el mismo ambiente sirve en producción o en CI.
 Los datos no se versionan (pesan GB): lo que se versiona es la *receta* para obtenerlos.
+
