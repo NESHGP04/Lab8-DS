@@ -33,7 +33,7 @@ GROUP BY 1, 2 ORDER BY 2, 1;
 
 6 filas de salida; se muestran hasta 60.
 
-**Decisión:** Comprobar cobertura y detectar faltantes. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** Se observan 64 archivos y 121.184.384 registros según los footers: 24 archivos de 2024, 24 de 2025 y 16 de 2026. Cada tipo tiene 12 meses en 2024 y 2025 y 8 meses en 2026. Registrar esa cobertura antes de comparar volúmenes anuales.
 
 ## 02_registros.sql
 
@@ -65,7 +65,7 @@ GROUP BY 1, 2 ORDER BY 2, 1;
 
 6 filas de salida; se muestran hasta 60.
 
-**Decisión:** Contrastar totales con footers. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** Los seis conteos `count(*)` coinciden exactamente con `filas_footer` de la consulta anterior; la suma es 121.184.384. Esto respalda la lectura de los 64 archivos disponibles, sin demostrar por sí mismo que no falten meses publicados.
 
 ## 03_columnas.sql
 
@@ -135,7 +135,7 @@ GROUP BY 1, 2 ORDER BY 2, 1;
 
 43 filas de salida; se muestran hasta 60.
 
-**Decisión:** Identificar cambios de esquema. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** Las fechas `lpep_*` sólo aparecen en green y `tpep_*` sólo en yellow; `Airport_fee` es exclusiva de yellow y `trip_type` de green. `cbd_congestion_fee` figura en 20 archivos por servicio y `request_source` en 3 por servicio. Se justifica `union_by_name = true` y la normalización de las fechas en la vista.
 
 ## 04_tipos_y_muestra.sql
 
@@ -194,7 +194,7 @@ SELECT * FROM read_parquet('data/raw/*/*/*.parquet', union_by_name = true, filen
 
 5 filas de salida; se muestran hasta 60.
 
-**Decisión:** Decidir normalización de fechas y montos. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** DuckDB infiere TIMESTAMP para las fechas de ambos servicios, DOUBLE para montos/distancias y VARCHAR para `filename`. Las cinco filas de la muestra provienen de green 2024; no usarlas para inferir frecuencias de yellow o de otros años.
 
 ## 05_calidad.sql
 
@@ -235,7 +235,7 @@ FROM viajes_b GROUP BY 1, 2 ORDER BY 2, 1;
 
 6 filas de salida; se muestran hasta 60.
 
-**Decisión:** Investigar incidencias sin borrar filas. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** En yellow 2026, 952.231 de 29.703.355 filas (3,21 %) registran distancia cero; 7.716.688 (25,98 %) tienen `passenger_count` nulo. En green 2025, 1.344 de 591.375 filas tienen fin anterior al inicio. Las cantidades negativas y distancias cero requieren revisión, no eliminación automática.
 
 ## 06_validacion_anios.sql
 
@@ -266,7 +266,7 @@ GROUP BY 1, 2 ORDER BY 1, 2;
 
 6 filas de salida; se muestran hasta 60.
 
-**Decisión:** Confirmar 2024+2026 y repetir con 2025. Concretar la conclusión con las cifras anteriores.
+**Resultado y decisión:** La consulta registra simultáneamente ambos servicios de 2024, 2025 y 2026 y 64 archivos en total. Hay fechas de inicio muy anteriores al año nominal: no usar `min(inicio)` como fecha de comienzo del periodo publicado. Esta salida final no constituye evidencia cronológica de que se haya ejecutado antes de incorporar 2025.
 
 ## Consulta directa
 
