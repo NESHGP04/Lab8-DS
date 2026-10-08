@@ -165,17 +165,27 @@ docker exec -it lab8-lab python scripts/verify_data.py --years 2024 2025 2026
 
 ## Como ejecutar el analisis
 
-> Pendiente: lo completan las Personas B y C (ver [docs/DIVISION_TAREAS.md](docs/DIVISION_TAREAS.md)).
-
-Abrir <http://localhost:8888> y ejecutar los notebooks de `notebooks/` en orden
-(`01_exploracion`, `02_eda`, `03_benchmark`, `04_indicadores`). Las consultas SQL estan en `sql/` y su
-documentacion en `docs/`. Todas leen los datos con el patron `/workspace/data/raw/*/*/*.parquet`.
+Abrir <http://localhost:8888> y ejecutar los notebooks de la carpeta `notebooks/` en orden cronológico (`01_exploracion.ipynb`, `02_eda.ipynb`, `03_benchmark.ipynb`, `04_indicadores.ipynb`). Las consultas SQL que respaldan estos análisis se encuentran en `sql/` y su justificación y hallazgos en la carpeta `docs/`.
 
 ## Como reproducir los benchmarks
 
-> Pendiente (Persona C, Ejercicio 6): `scripts/build_duckdb.py` y `scripts/benchmark.py`.
+Para comparar el rendimiento entre leer archivos Parquet crudos versus una tabla DuckDB materializada:
+
+1. **Construya la base de datos DuckDB:**
+   ```bash
+   docker compose exec lab python scripts/build_duckdb.py
+   ```
+2. **Ejecute el script de benchmark:**
+   ```bash
+   docker compose exec lab python scripts/benchmark.py
+   ```
+3. Los resultados de tiempo de ejecución se guardarán en `data/processed/benchmark_results.csv` y las conclusiones del experimento pueden leerse en `docs/benchmark.md`.
 
 ## Como generar los resultados principales
 
-> Pendiente (Persona C, Ejercicios 7 y 8): tablero en Metabase (<http://localhost:3000>) y evidencia en `dashboard/`.
-> Nota: Metabase debe abrir `data/processed/taxis.duckdb` en modo de solo lectura (`read_only`).
+Los resultados principales y patrones visuales se consolidaron en un Tablero Analítico en Metabase:
+
+1. Asegúrese de haber construido la base de datos DuckDB en el paso anterior.
+2. Abra Metabase en <http://localhost:3000> y conecte la base de datos apuntando a la ruta interna `/workspace/data/processed/taxis.duckdb` (Active la opción de *Solo Lectura*).
+3. Utilice las 6 consultas ubicadas en `sql/indicadores/` para generar las visualizaciones.
+4. La evidencia del tablero final ensamblado con el flujo de datos completo (2024, 2025 y 2026) se encuentra documentada en la carpeta `dashboard/` (ver `tablero_con_2025.png`). Las reflexiones teóricas sobre la arquitectura elegida se encuentran en `docs/discussion.md` y `docs/ejercicio9_reflexion.md`.
