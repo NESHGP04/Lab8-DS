@@ -89,8 +89,16 @@ def build(db_path: Path = DB_PATH) -> None:
     print(f"\n  Archivo: {db_path}  ({tam:.1f} MiB)")
 
     con.close()
+    
+    # ── Validación de la ingestión del 2025 ─────────────────────────
+    con2 = duckdb.connect(str(db_path), read_only=True)
+    anios = con2.execute("SELECT DISTINCT anio_archivo FROM viajes ORDER BY 1").fetchall()
+    print("\nAños detectados exitosamente en la base de datos:")
+    for a in anios:
+        print(f" - {a[0]}")
+    con2.close()
+    
     print("\nListo.")
-
 
 if __name__ == "__main__":
     build()
